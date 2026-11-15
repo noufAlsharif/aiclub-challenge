@@ -19,7 +19,7 @@ h1,h2,h3,.cairo,button{font-family:Cairo,sans-serif}
 .icon-btn{border:1px solid var(--line);background:var(--glass);color:#fff;width:44px;height:44px;border-radius:12px;font-size:1.2rem;cursor:pointer}
 .glass{border:1px solid var(--line);background:var(--glass);backdrop-filter:blur(14px);border-radius:18px}
 .screen{display:none}.screen.on{display:block}
-h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:900;line-height:1.25;background:linear-gradient(90deg,#fff,#c4b5fd 50%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+h1{font-size:clamp(2rem,6vw,3.6rem);font-weight:900;line-height:1.55;padding:.08em 0 .22em;background:linear-gradient(90deg,#fff,#c4b5fd 50%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
 .lead{color:#cbd5e1;margin:12px 0 20px;max-width:62ch;line-height:1.9}
 .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-bottom:20px}
 .rule{padding:16px;border-top:3px solid var(--c)}.rule h3{margin-bottom:4px}.rule p{color:var(--mut);font-size:.9rem;line-height:1.7}
@@ -42,10 +42,12 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 .tcard{position:relative;padding:14px 12px 12px;text-align:center;transition:.25s}
 .tcard.act{border-color:var(--cyan);box-shadow:0 0 0 1px var(--cyan),0 0 28px rgba(6,182,212,.55);background:rgba(6,182,212,.1)}
 .tcard .now{position:absolute;top:-12px;inset-inline:0;margin:auto;width:max-content;font:700 .8rem Cairo;padding:3px 12px;border-radius:99px;background:linear-gradient(90deg,var(--cyan),var(--violet))}
-.tcard .nm{font:700 1rem Cairo;margin-bottom:2px}.tcard .sc{font:900 2.4rem Cairo;color:var(--cyan);line-height:1.2}
+.tcard .nm{font:700 1rem Cairo;margin-bottom:2px}.tieinfo{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}.tchip{padding:8px 14px;border-radius:12px;border:1px solid var(--line);background:rgba(255,255,255,.05);font:700 1rem Cairo;text-align:center}.tchip small{display:block;font:500 .75rem Cairo;color:var(--mut)}.tchip.now{border-color:var(--cyan);box-shadow:0 0 16px rgba(6,182,212,.5);background:rgba(6,182,212,.12)}.tchip.done{opacity:.45}.tmsg{font-weight:700;margin-bottom:12px;color:var(--yellow)}
+.tcard .adj{display:flex;gap:6px;justify-content:center;margin-top:4px}.tcard .adj .btn{min-height:32px;padding:3px 14px}
+.tcard .sc{font:900 2.4rem Cairo;color:var(--cyan);line-height:1.2}
 #note{display:none;padding:12px 16px;margin-bottom:14px;border-color:var(--yellow);color:var(--yellow);font-weight:700}
-.board{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
-@media(max-width:700px){.board{grid-template-columns:repeat(2,1fr)}}
+.board{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+@media(max-width:700px){.board{grid-template-columns:repeat(3,1fr)}}
 .card{position:relative;aspect-ratio:1.8;border:1px solid rgba(139,92,246,.55);border-radius:18px;overflow:hidden;background:linear-gradient(160deg,rgba(139,92,246,.3),rgba(79,70,229,.1));color:#fff;cursor:pointer;transition:transform .2s,box-shadow .2s}
 .card:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 0 24px rgba(139,92,246,.55)}
 .card .wm{position:absolute;inset:0;display:grid;place-items:center;opacity:.14}.card .wm img{width:62%;filter:grayscale(1) brightness(1.6)}
@@ -55,22 +57,23 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 /* modals */
 .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(5,8,15,.82);backdrop-filter:blur(6px);padding:14px;z-index:10;overflow:auto}
 .modal.on{display:grid}#qmodal{z-index:12}
-.scene{perspective:1400px;width:min(740px,100%)}
+.scene{perspective:1400px;width:min(780px,100%)}
 .flip{display:grid;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.8,.2,1);transform:rotateY(180deg)}
 .flip.shown{transform:rotateY(0)}
-.face{grid-area:1/1;position:relative;min-height:min(450px,80vh);backface-visibility:hidden;border-radius:24px;padding:22px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;border:2px solid var(--tc);background:linear-gradient(160deg,#151b30,#0b1120);box-shadow:0 0 44px color-mix(in srgb,var(--tc) 40%,transparent)}
+.face{grid-area:1/1;position:relative;min-height:0;backface-visibility:hidden;border-radius:24px;padding:clamp(14px,2.6vh,26px) 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:clamp(8px,1.5vh,14px);border:2px solid var(--tc);background:linear-gradient(160deg,#151b30,#0b1120);box-shadow:0 0 44px color-mix(in srgb,var(--tc) 40%,transparent)}
+.face .btn{padding:10px 20px;min-height:44px;font-size:1rem}.face .btn.sm{min-height:36px;padding:6px 14px;font-size:.9rem}.tag{padding:3px 12px!important;font-size:.9rem!important}
 .face.front{transform:rotateY(180deg);font:900 5rem Cairo}
 .chips{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;align-items:center}
 .tag{font:700 1rem Cairo;padding:5px 16px;border-radius:99px;background:color-mix(in srgb,var(--tc) 22%,transparent);color:var(--tc)}
 .tag.cat{background:rgba(255,255,255,.1);color:#e2e8f0}
-.ring{position:relative;width:86px;height:86px}.ring svg{transform:rotate(90deg) scaleX(-1);width:100%;height:100%}
+.ring{position:relative;width:clamp(66px,11vh,92px);height:clamp(66px,11vh,92px)}.ring svg{transform:rotate(90deg) scaleX(-1);width:100%;height:100%}
 .ring circle{fill:none;stroke-width:8}.ring .bg{stroke:rgba(255,255,255,.12)}
 .ring .fg{stroke:var(--cyan);stroke-linecap:round;stroke-dasharray:283;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear,stroke .3s}
-.ring b{position:absolute;inset:0;display:grid;place-items:center;font:900 2.1rem Cairo}
+.ring b{position:absolute;inset:0;display:grid;place-items:center;font:900 clamp(1.6rem,4vh,2.3rem) Cairo}
 .ring.warn .fg{stroke:var(--yellow)}.ring.warn b{color:var(--yellow)}.ring.danger .fg{stroke:var(--red)}.ring.danger b{color:var(--red)}
-.q{font:700 clamp(1.3rem,2.6vw,1.9rem)/1.6 Cairo;max-width:32ch}
-.q.emoji{font-size:clamp(1.6rem,3.6vw,2.3rem)}.q.emoji .e{font-size:1.5em;letter-spacing:.1em}
-.ans{font:700 clamp(1.1rem,2.2vw,1.5rem) Cairo;color:var(--cyan);min-height:1.6em}
+.q{font:700 clamp(1.2rem,3.9vh,1.95rem)/1.55 Cairo;max-width:42ch}
+.q.emoji{font-size:clamp(1.4rem,4.8vh,2.3rem)}.q.emoji .e{font-size:1.5em;letter-spacing:.1em}
+.ans{font:700 clamp(1.05rem,3.1vh,1.5rem) Cairo;color:var(--cyan);min-height:1.3em}
  .panel{width:min(900px,100%);max-height:92vh;overflow:auto;padding:20px}
 .winner{text-align:center;padding:30px 16px}.winner .crown{font-size:4rem}.winner h1{margin:8px 0}
 .lb{max-width:520px;margin:20px auto;padding:14px}
@@ -92,11 +95,12 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 <!-- الشاشة 1 -->
 <section class="screen on" id="s-start">
   <h1>تحدي الذكاء والألغاز<br><span style="font-size:.6em">AI Club Challenge</span></h1>
-  <p class="lead">تتنافس أقسام النادي في عشرة أسئلة وألغاز. كل قسم يختار بطاقة في دوره ويجيب قبل انتهاء الوقت، والقسم الأعلى نقاطًا يفوز.</p>
+  <p class="lead">تتنافس أقسام النادي في ثمانية عشر سؤالًا وأحجية. كل قسم يختار بطاقة في دوره ويجيب قبل انتهاء الوقت، والقسم الأعلى نقاطًا يفوز.</p>
   <div class="rules">
-    <div class="glass rule" style="--c:#22c55e"><h3>🟢 سؤال عادي (5 أسئلة)</h3><div class="pts">+10</div><p>صحيح: ‎+10‎ نقاط. خطأ: صفر.</p></div>
-    <div class="glass rule" style="--c:#8B5CF6"><h3>🟣 سؤال دبل (3 أسئلة)</h3><div class="pts">+20</div><p>للأسئلة الأصعب. صحيح: ‎+20‎ نقطة. خطأ: صفر.</p></div>
+    <div class="glass rule" style="--c:#22c55e"><h3>🟢 سؤال عادي (10 أسئلة)</h3><div class="pts">+10</div><p>صحيح: ‎+10‎ نقاط. خطأ: صفر.</p></div>
+    <div class="glass rule" style="--c:#8B5CF6"><h3>🟣 سؤال دبل (4 أسئلة)</h3><div class="pts">+20</div><p>للأسئلة الأصعب. صحيح: ‎+20‎ نقطة. خطأ: صفر.</p></div>
     <div class="glass rule" style="--c:#ef4444"><h3>🔴 سؤال خصم (سؤالان)</h3><div class="pts">+10 / −5</div><p>صحيح: ‎+10‎ نقاط. خطأ: خصم ‎5‎ نقاط.</p></div>
+    <div class="glass rule" style="--c:#f59e0b"><h3>🟠 سؤال حرمان (سؤالان)</h3><div class="pts">+10 ⛔</div><p>صحيح: ‎+10‎ نقاط ويُحرم القسم التالي من دوره. خطأ: صفر.</p></div>
   </div>
   <div class="glass setup">
     <h2>الأقسام المشاركة</h2>
@@ -113,7 +117,7 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
   <div class="bar-top">
     <button class="btn ghost" id="backBtn">→ رجوع</button>
     <button class="btn ghost" id="swap">تبديل الدور</button>
-    <button class="btn cy" id="tieBtn">⚡ أسئلة الحسم (3)</button>
+    <button class="btn cy" id="tieBtn">⚡ أسئلة الحسم</button>
   </div>
   <div class="glass" id="note"></div>
   <div class="teams" id="teams"></div>
@@ -150,6 +154,7 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
         <button class="btn ok" id="right">✅ إجابة صحيحة</button>
         <button class="btn no" id="wrong">❌ إجابة خاطئة</button>
       </div>
+      <div class="chips" id="tieBtns" style="display:none"></div>
     </div>
   </div></div>
 </div>
@@ -157,8 +162,9 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 <!-- نافذة الحسم -->
 <div class="modal" id="tmodal"><div class="glass panel">
   <h2 class="cairo" style="margin-bottom:12px">⚡ أسئلة الحسم</h2>
-  <p style="color:var(--mut);margin-bottom:12px">تُستخدم عند تعادل قسمين أو أكثر. الإجابة الصحيحة ‎+10‎، والخاطئة صفر.</p>
-  <div class="board" id="tboard" style="grid-template-columns:repeat(3,1fr)"></div>
+  <p style="color:var(--mut);margin-bottom:12px">أول قسم يجيب إجابة صحيحة يأخذ ‎+10‎ نقاط ويفوز.</p>
+  <div id="tieInfo"></div>
+  <div class="board" id="tboard" style="grid-template-columns:repeat(auto-fit,minmax(130px,1fr))"></div>
   <div class="row"><button class="btn ghost" id="tClose">إغلاق</button></div>
 </div></div>
 
@@ -170,22 +176,31 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:2px solid v
 </div></div>
 
 <script>
-/* ============ الأسئلة الرئيسية (10) — الصق أسئلتكم النهائية هنا ============
-   t: "normal" = عادي +10 | "double" = دبل +20 | "penalty" = خصم (+10 / -5)
-   cat: "عام / إيموجي" أو "عن النادي"      المطلوب: 5 عادي، 3 دبل، 2 خصم */
+/* ============ الأسئلة الرئيسية (18) — الصق أسئلتكم النهائية هنا ============
+   t: "normal" = عادي +10 | "double" = دبل +20 | "penalty" = خصم (+10 / -5) | "skip" = حرمان (+10 ويُحرم القسم التالي من دوره إن أجاب صح)
+   cat: "عام / إيموجي" أو "عن النادي"      المطلوب: 10 عادي، 4 دبل، 2 خصم، 2 حرمان — و14 عام / 4 عن النادي */
 const DEFAULT_QUESTIONS = [
   {t:"normal", cat:"عام / إيموجي", q:"🤖❤️🧠 ما المجال الذي تدل عليه هذه الإيموجي؟", a:"الذكاء الاصطناعي"},
-  {t:"normal", cat:"عام / إيموجي", q:"🌧️ + ☀️ = ؟", a:"قوس قزح 🌈"},
-  {t:"normal", cat:"عام / إيموجي", q:"كلما زاد نقص. ما هو؟", a:"العمر"},
+  {t:"double", cat:"عام / إيموجي", q:"ما الشيء الذي له عين ولا يرى؟", a:"الإبرة"},
   {t:"normal", cat:"عن النادي", q:"ما اسم الجامعة التي ينتمي إليها نادي الذكاء الاصطناعي؟", a:"جامعة الملك عبدالعزيز"},
+  {t:"penalty", cat:"عام / إيموجي", q:"أمشي بلا أرجل وأبكي بلا عيون. ما أنا؟", a:"السحاب"},
+  {t:"normal", cat:"عام / إيموجي", q:"🌧️ + ☀️ = ؟", a:"قوس قزح 🌈"},
   {t:"normal", cat:"عن النادي", q:"ما هو الوسم (الهاشتاق) الذي يستخدمه النادي؟", a:"#نقود_المستقبل"},
   {t:"double", cat:"عام / إيموجي", q:"🌙🍽️🕌 أي شهر هجري تدل عليه هذه الإيموجي؟", a:"رمضان"},
-  {t:"double", cat:"عام / إيموجي", q:"لي أسنان ولا أعضّ. ما أنا؟", a:"المشط"},
+  {t:"skip", cat:"عام / إيموجي", q:"ما الشيء الذي له مفاتيح ولا يفتح أبوابًا؟", a:"لوحة المفاتيح"},
+  {t:"normal", cat:"عام / إيموجي", q:"ما الشيء الذي يكتب ولا يقرأ؟", a:"القلم"},
   {t:"double", cat:"عن النادي", q:"إلى أي كلية في الجامعة يتبع النادي؟", a:"كلية الحاسبات وتقنية المعلومات (FCIT)"},
-  {t:"penalty", cat:"عام / إيموجي", q:"أمشي بلا أرجل وأبكي بلا عيون. ما أنا؟", a:"السحاب"},
-  {t:"penalty", cat:"عام / إيموجي", q:"ما الشيء الذي له مفاتيح ولا يفتح أبوابًا؟", a:"لوحة المفاتيح"}
+  {t:"normal", cat:"عام / إيموجي", q:"كلما زاد نقص. ما هو؟", a:"العمر"},
+  {t:"penalty", cat:"عن النادي", q:"ما اسم حساب النادي على منصتي X ولينكدإن؟", a:"FCIT_AICLUB"},
+  {t:"normal", cat:"عام / إيموجي", q:"ما أكبر كوكب في المجموعة الشمسية؟", a:"المشتري"},
+  {t:"double", cat:"عام / إيموجي", q:"ما الاسم الكامل للاختصار GPT؟", a:"Generative Pre-trained Transformer"},
+  {t:"normal", cat:"عام / إيموجي", q:"🥛 + ☕ = ؟", a:"لاتيه"},
+  {t:"skip", cat:"عام / إيموجي", q:"ما الشيء الذي يسمع بلا أذن ويتكلم بلا لسان؟", a:"الصدى"},
+  {t:"normal", cat:"عام / إيموجي", q:"لي أسنان ولا أعضّ. ما أنا؟", a:"المشط"},
+  {t:"normal", cat:"عام / إيموجي", q:"ما الحيوان الذي يُلقَّب بسفينة الصحراء؟", a:"الجمل"}
 ];
-/* ============ أسئلة الحسم الاحتياطية (3) — الصق أسئلتكم هنا ============ */
+/* ============ أسئلة الحسم (3) — الصق أسئلتكم هنا ============
+   يتنافس عليها الأقسام المتعادلة معًا: أول قسم يجيب صح يأخذ +10 ويفوز. */
 const TIEBREAKER_QUESTIONS = [
   {q:"🐍💻 ما اسم لغة البرمجة الأشهر في الذكاء الاصطناعي؟", a:"بايثون (Python)"},
   {q:"ما الشيء الذي كلما جفّف بلل؟", a:"المنشفة"},
@@ -195,7 +210,8 @@ const TIEBREAKER_QUESTIONS = [
 const TYPES={
   normal:{label:"🟢 عادي +10",color:"#22c55e",win:10,lose:0},
   double:{label:"🟣 دبل +20",color:"#8B5CF6",win:20,lose:0},
-  penalty:{label:"🔴 خصم +10 / -5",color:"#ef4444",win:10,lose:-5}
+  penalty:{label:"🔴 خصم +10 / -5",color:"#ef4444",win:10,lose:-5},
+  skip:{label:"🟠 حرمان +10 (يُحرم التالي)",color:"#f59e0b",win:10,lose:0,skip:true}
 };
 const TIE_TYPE={label:"⚡ حسم +10",color:"#06B6D4",win:10,lose:0};
 const DEFAULT_TEAMS=["التقني","الهاكاثونات","الدعم والتطوير","العلاقات العامة","التخطيط والفعاليات","الإعلام والتسويق"];
@@ -224,25 +240,51 @@ $('addTeam').onclick=()=>{const l=rawTeams();l.push('');renderTeamList(l);$('tea
 $('teamList').onclick=e=>{const d=e.target.closest('[data-del]');if(!d)return;const l=rawTeams();l.splice(+d.dataset.del,1);renderTeamList(l)};
 
 /* ============ اللعبة ============ */
-let teams=[],scores=[],turn=0,used=[],tieUsed=[],cur=null,decided=false,tLeft=SECS,timer=null,running=false;
+let teams=[],scores=[],turn=0,used=[],tieUsed=[],tieTeams=[],tieActive=false,cur=null,decided=false,tLeft=SECS,timer=null,running=false;
 $('start').onclick=()=>{
   const n=rawTeams().map(s=>s.trim()).filter(Boolean);
   if(n.length<2){alert('أضف قسمين على الأقل للبدء.');return}
-  teams=n;scores=n.map(()=>0);turn=0;used=Q.q.map(()=>false);tieUsed=Q.tie.map(()=>false);
+  teams=n;scores=n.map(()=>0);turn=0;used=Q.q.map(()=>false);tieUsed=Q.tie.map(()=>false);tieTeams=[];tieActive=false;
   $('note').style.display='none';draw();show('s-game');
 };
+const isAct=i=>tieActive?tieTeams.includes(i):i===turn;
 function draw(){
-  $('teams').innerHTML=teams.map((t,i)=>`<div class="glass tcard ${i===turn?'act':''}">${i===turn?'<span class="now">دوركم الآن</span>':''}<div class="nm">${esc(t)}</div><div class="sc">${scores[i]}</div></div>`).join('');
+  $('teams').innerHTML=teams.map((t,i)=>`<div class="glass tcard ${isAct(i)?'act':''}">${isAct(i)?`<span class="now">${tieActive?'متعادل ⚡':'دوركم الآن'}</span>`:''}<div class="nm">${esc(t)}</div><div class="sc">${scores[i]}</div><div class="adj"><button class="btn ghost sm" data-adj="${i}" data-d="5" aria-label="زيادة 5 نقاط">+5</button><button class="btn ghost sm" data-adj="${i}" data-d="-5" aria-label="خصم 5 نقاط">-5</button></div></div>`).join('');
   $('board').innerHTML=Q.q.map((_,i)=>`<button class="card" data-i="${i}" ${used[i]?'disabled':''} aria-label="بطاقة ${i+1}"><span class="wm">${WM()}</span><span class="num">${i+1}</span></button>`).join('');
   $('tboard').innerHTML=Q.tie.map((_,i)=>`<button class="card tie" data-t="${i}" ${tieUsed[i]?'disabled':''}><span class="wm">${WM()}</span><span class="num">حسم ${i+1}</span></button>`).join('');
 }
 function goSetup(){stopT();$('tmodal').classList.remove('on');$('cmodal').classList.remove('on');show('s-start')}
 $('backBtn').onclick=()=>{const started=used.some(Boolean)||scores.some(x=>x!==0);started?$('cmodal').classList.add('on'):goSetup()};
 $('cYes').onclick=goSetup;$('cNo').onclick=()=>$('cmodal').classList.remove('on');
+$('teams').onclick=e=>{const b=e.target.closest('[data-adj]');if(!b)return;scores[+b.dataset.adj]+=+b.dataset.d;draw();if(used.every(Boolean))checkEnd()};
 $('swap').onclick=()=>{turn=(turn+1)%teams.length;draw()};
 $('board').onclick=e=>{const c=e.target.closest('.card');if(c&&!c.disabled)openQ({kind:'main',i:+c.dataset.i})};
 $('tboard').onclick=e=>{const c=e.target.closest('.card');if(c&&!c.disabled)openQ({kind:'tie',i:+c.dataset.t})};
-$('tieBtn').onclick=()=>$('tmodal').classList.add('on');
+const topTeams=()=>{const m=Math.max(...scores);return scores.map((x,i)=>x===m?i:-1).filter(i=>i>=0)};
+function renderTie(){
+  const info=$('tieInfo'),board=$('tboard');let msg='';
+  if(!used.every(Boolean))msg='أسئلة الحسم تُفتح بعد انتهاء البطاقات الرئيسية.';
+  else if(!tieActive)msg='لا يوجد تعادل على الصدارة.';
+  if(msg){info.innerHTML=`<div class="tmsg">${msg}</div>`;board.style.display='none';return}
+  board.style.display='';
+  info.innerHTML='<div class="tmsg" style="color:var(--cyan)">الأقسام المتعادلة على الصدارة (تتنافس معًا):</div><div class="tieinfo">'+tieTeams.map(t=>`<div class="tchip">${esc(teams[t])}</div>`).join('')+'</div>';
+}
+$('tieBtn').onclick=()=>{
+  if(used.every(Boolean)&&!tieActive){const t=topTeams();if(t.length>1&&tieUsed.some(u=>!u)){tieActive=true;tieTeams=t}}
+  draw();renderTie();$('tmodal').classList.add('on');
+};
+$('tieBtns').onclick=e=>{const b=e.target.closest('[data-w]');if(b)settleTie(+b.dataset.w)};
+function settleTie(w){
+  if(decided||!cur||cur.kind!=='tie')return;decided=true;stopT();
+  $('atext').textContent='الإجابة: '+Q.tie[cur.i].a;
+  tieUsed[cur.i]=true;
+  if(w>=0){scores[w]+=TIE_TYPE.win;sfx.good()}else sfx.bad();
+  setTimeout(()=>{
+    $('qmodal').classList.remove('on');
+    if(w>=0||tieUsed.every(Boolean)){finish();return}
+    draw();renderTie();
+  },1300);
+}
 $('tClose').onclick=()=>$('tmodal').classList.remove('on');
 
 const isEmoji=s=>/\p{Extended_Pictographic}/u.test(s);
@@ -256,6 +298,10 @@ function openQ(c){
   const qt=$('qtext');qt.textContent=item.q;qt.classList.toggle('emoji',isEmoji(item.q));
   if(isEmoji(item.q))qt.innerHTML=esc(item.q).replace(/((?:\p{Extended_Pictographic}\uFE0F?\u200D?)+)/gu,'<span class="e">$1</span>');
   $('atext').textContent='';$('right').disabled=$('wrong').disabled=false;
+  $('right').style.display=$('wrong').style.display=main?'':'none';
+  const tb=$('tieBtns');
+  if(main){tb.style.display='none';tb.innerHTML=''}
+  else{tb.style.display='flex';tb.innerHTML=tieTeams.map(t=>`<button class="btn ok" data-w="${t}">✅ ${esc(teams[t])} أجاب أولًا</button>`).join('')+'<button class="btn ghost" data-w="-1">لا أحد أجاب</button>'}
   $('qmodal').classList.add('on');$('flip').classList.remove('shown');
   stopT();setT(SECS);
   setTimeout(()=>{$('flip').classList.add('shown');sfx.flip();startT()},60);
@@ -272,14 +318,16 @@ $('reset').onclick=()=>{stopT();setT(SECS);startT()};
 $('reveal').onclick=()=>{const it=cur.kind==='main'?Q.q[cur.i]:Q.tie[cur.i];$('atext').textContent='الإجابة: '+it.a};
 
 function settle(ok){
-  if(decided||!cur)return;decided=true;stopT();
-  const main=cur.kind==='main',T=main?TYPES[Q.q[cur.i].t]:TIE_TYPE,it=main?Q.q[cur.i]:Q.tie[cur.i];
-  scores[turn]+=ok?T.win:T.lose;ok?sfx.good():sfx.bad();
+  if(decided||!cur||cur.kind!=='main')return;decided=true;stopT();
+  const main=true,T=TYPES[Q.q[cur.i].t],it=Q.q[cur.i];
+  scores[turn]+=ok?T.win:T.lose;ok?sfx.good():sfx.bad();const skipped=ok&&T.skip;
   $('atext').textContent='الإجابة: '+it.a;
-  main?used[cur.i]=true:tieUsed[cur.i]=true;
+  used[cur.i]=true;
   setTimeout(()=>{
     $('qmodal').classList.remove('on');
-    turn=(turn+1)%teams.length;draw();checkEnd();
+    const nxt=(turn+1)%teams.length;turn=(turn+(skipped?2:1))%teams.length;
+    const n=$('note');if(skipped){n.style.display='block';n.textContent='⛔ حُرم قسم «'+teams[nxt]+'» من دوره';}else n.style.display='none';
+    draw();checkEnd();
   },1100);
 }
 $('right').onclick=()=>settle(true);$('wrong').onclick=()=>settle(false);
@@ -289,8 +337,8 @@ function checkEnd(){
   if(!used.every(Boolean))return;
   const max=Math.max(...scores),tied=scores.filter(s=>s===max).length>1;
   if(tied&&tieUsed.some(u=>!u)){
-    const n=$('note');n.style.display='block';n.textContent='⚡ تعادل على الصدارة! افتح «أسئلة الحسم» لتحديد الفائز.';
-    $('tmodal').classList.add('on');
+    tieActive=true;tieTeams=topTeams();draw();
+    const n=$('note');n.style.display='block';n.textContent='⚡ تعادل على الصدارة! اضغط «أسئلة الحسم» لتحديد الفائز.';
   }else finish();
 }
 function finish(){
@@ -307,11 +355,20 @@ $('again').onclick=()=>show('s-start');
 function confetti(){
   const c=$('confetti'),x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
   if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
-  const cols=['#8B5CF6','#06B6D4','#4F46E5','#fff','#22c55e'];
-  const p=Array.from({length:170},()=>({x:Math.random()*c.width,y:-20-Math.random()*c.height*.6,w:6+Math.random()*6,h:8+Math.random()*8,v:2+Math.random()*4,r:Math.random()*6,s:(Math.random()-.5)*.2,k:cols[Math.random()*cols.length|0]}));
-  let f=0;(function loop(){x.clearRect(0,0,c.width,c.height);
-    p.forEach(a=>{a.y+=a.v;a.r+=a.s;a.x+=Math.sin(a.r)*1.5;x.save();x.translate(a.x,a.y);x.rotate(a.r);x.fillStyle=a.k;x.fillRect(-a.w/2,-a.h/2,a.w,a.h);x.restore()});
-    if(++f<340)requestAnimationFrame(loop);else x.clearRect(0,0,c.width,c.height)})();
+  const DURATION=10000; // مدة الاحتفال بالمللي ثانية (10 ثوانٍ) — غيّر الرقم لتطويلها أو تقصيرها
+  const cols=['#8B5CF6','#06B6D4','#4F46E5','#fff','#22c55e','#54d640','#7e36e3'];
+  const mk=(top)=>({x:Math.random()*c.width,y:top?-20:-20-Math.random()*c.height*.6,w:6+Math.random()*6,h:8+Math.random()*8,v:2+Math.random()*4,r:Math.random()*6,s:(Math.random()-.5)*.2,k:cols[Math.random()*cols.length|0]});
+  let p=Array.from({length:200},()=>mk(false));
+  const t0=performance.now();
+  (function loop(now){
+    const alive=now-t0<DURATION;
+    x.clearRect(0,0,c.width,c.height);
+    p.forEach(a=>{a.y+=a.v;a.r+=a.s;a.x+=Math.sin(a.r)*1.5;
+      if(a.y>c.height+20&&alive)Object.assign(a,mk(true)); // تُعاد القصاصات من الأعلى طوال مدة الاحتفال
+      x.save();x.translate(a.x,a.y);x.rotate(a.r);x.fillStyle=a.k;x.fillRect(-a.w/2,-a.h/2,a.w,a.h);x.restore()});
+    p=p.filter(a=>a.y<=c.height+20);
+    if(p.length||alive)requestAnimationFrame(loop);else x.clearRect(0,0,c.width,c.height);
+  })(performance.now());
 }
 </script>
 </body>
